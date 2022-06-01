@@ -80,4 +80,21 @@ Write an asynchronous test (in routes/users.test.js) which:
 Sends a GET /users/99 request to our app using Supertest
 Checks if the response's HTTP status code is 404
 Checks if the response's body is an object with the structure { success: false, reason: "No user with ID 99 was found" }
+  - note missing period!
 */
+
+describe(`when get req to /users/99 returns 404 and a res with body structured correctly`,
+() => {
+  test(`when get req to /users/99 returns 404 status code`,
+  async () => {
+    const response = await request(app).get(`/users/99`);
+    expect(response.statusCode).toBe(404);
+  });
+  test(`a res with body structured { success: false, reason: "No user with ID 99 was found." } is returned`,
+  async () => {  
+    const response = await request(app).get(`/users/99`);
+    const actual = response.body;
+    const expected = { success: false, reason: "No user with ID 99 was found." };
+    expect(actual).toEqual(expected);
+  });
+})

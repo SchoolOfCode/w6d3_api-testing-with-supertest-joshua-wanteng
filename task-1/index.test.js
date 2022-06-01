@@ -77,7 +77,16 @@ test("Has the structure { success: true, payload: { hasAuthenticated: true, isAd
       },
     };
   }
-
+  const actual = getAuthentication();
+  const expected = {
+         success: true,
+          payload: {
+            hasAuthenticated: true,
+            isAdmin: false,
+            userId: expect.any(Number)
+          }
+  }
+  expect(actual).resolves.toEqual(expected)
 });
 
 /**

@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "version": "0.0.0",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.1",
+    "jest": "^27.0.6",
+    "supertest": "^6.1.6"
+  }
+}

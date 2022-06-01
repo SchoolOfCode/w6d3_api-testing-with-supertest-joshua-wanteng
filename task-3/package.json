@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "version": "0.0.0",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.1",
+    "dotenv": "^10.0.0",
+    "jest": "^27.0.6",
+    "nodemon": "^2.0.12",
+    "supertest": "^6.1.6"
+  },
+  "scripts": {
+    "dev": "nodemon -r dotenv/config ./server.js",
+    "db-reset": "node -r dotenv/config ./db/scripts/reset-table.js",
+    "test": "jest --setupFiles dotenv/config"
+  }
+}

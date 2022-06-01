@@ -16,10 +16,10 @@ Checks if the response's body is an object with the structure:
   - check structure against an object declared as expected and 
   within that use a expect.any method for array? ✅ 
 Checks if every item in the payload array is an object with the structure: 
-{ id: any number, username: any string }
+{ id: any number, username: any string } ✅
   - using jest check each payload array item and check using object 
   declared with expect.any for number and string respectively
-    - can we loop with forEach using jest?
+    - can we loop with forEach using jest? ✅✅✅✅
 */
 
 import request from "supertest";

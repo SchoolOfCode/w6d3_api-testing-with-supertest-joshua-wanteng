@@ -80,15 +80,14 @@ test("Has the structure { success: true, payload: { hasAuthenticated: true, isAd
 
   const actual = getAuthentication();
   const expected = {
-    success: true,
-    payload: {
-      hasAuthenticated: true,
-      isAdmin: false,
-      userId: expect.any(Number),
-    },
-  };
-
-  expect(actual).toEqual(expected)
+         success: true,
+          payload: {
+            hasAuthenticated: true,
+            isAdmin: false,
+            userId: expect.any(Number)
+          }
+  }
+  expect(actual).resolves.toEqual(expected)
 
 });
 
@@ -106,14 +105,31 @@ test("Has the structure { success: true, payload: { hasAuthenticated: true, isAd
  *
  * This time the test has not been written for you, you'll need to write it from scratch.
  */
-async function getUsernames() {
-  return {
+
+test(`test correct return format`, function () {
+  async function getUsernames() {
+    return {
+      success: true,
+      payload: [
+        { username: "A" },
+        { username: "B" },
+        { username: "C" },
+        { username: "D" },
+      ],
+    };
+  }
+  
+  const actual = getUsernames();
+  const expected = {
     success: true,
     payload: [
-      { username: "A" },
-      { username: "B" },
-      { username: "C" },
-      { username: "D" },
+      { username: expect.any(String) },
+      { username:  expect.any(String) },
+      { username:  expect.any(String) },
+      { username:  expect.any(String) },
     ],
   };
-}
+
+  expect(actual).resolves.toStrictEqual(expected)
+})
+

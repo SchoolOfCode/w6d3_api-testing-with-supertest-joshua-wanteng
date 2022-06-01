@@ -6,7 +6,7 @@ You haven't written it, but there also shouldn't be anything new or unfamiliar i
 
 Write an asynchronous test (in routes/users.test.js) which:
 
-Sends a GET /users request to our app using Supertest
+Sends a GET /users request to our app using Supertest ✅
   - import superTest ✅
   - import app from file path ✅
 Checks if the response's HTTP status code is 200 ✅
@@ -51,11 +51,11 @@ describe(`when get req to /users returns 200, a res with body structured correct
 })
 
 /*
-Write an asynchronous test (in routes/users.test.js) which:
+Write an asynchronous test (in routes/users.test.js) which: ✅
 
-Sends a GET /users/4 request to our app using Supertest
-Checks if the response's HTTP status code is 200
-Checks if the response's body is an object with the structure { success: true, payload: { id: 4, username: any string } }
+Sends a GET /users/4 request to our app using Supertest ✅
+Checks if the response's HTTP status code is 200 ✅
+Checks if the response's body is an object with the structure { success: true, payload: { id: 4, username: any string } } ✅
 */
 
 describe(`when get req to /users/4 returns 200 and a res with body structured correctly`,

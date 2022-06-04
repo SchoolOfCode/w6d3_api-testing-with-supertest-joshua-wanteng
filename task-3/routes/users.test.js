@@ -238,5 +238,10 @@ describe(`delete route works`,
   - just returns nothing if delete request doesn't exist ❗ 
   - check status 200 ✅
   - check structure ✅
+  - ❗ thoughts on undefined returns
+    - unsure possible issue with this loop in async but works on 
+    get so unlikely
+    - possible issue with async not being dealt with correctly
+    and may need to close pool as per bonus task????????
 
 */

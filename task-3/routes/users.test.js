@@ -87,24 +87,21 @@ afterAll(done => {
   done();
 });
 
-describe(`get route works for all, id search, and specific name 
-search on valid and invalid requests`,
+describe(`get route works for all, id search, and specific name search on valid and invalid requests`,
 () => {
   test(`when get req to /users returns 200 status code`,
   async () => {
     const response = await request(app).get(`/users`);
     expect(response.statusCode).toBe(200);
   });
-  test(`when get req to /users a res with body structured 
-  { success: true, payload: array } is returned`,
+  test(`when get req to /users a res with body structured { success: true, payload: array } is returned`,
   async () => {  
     const response = await request(app).get(`/users`);
     const actual = response.body;
     const expected = { success: true, payload: expect.any(Array) };
     expect(actual).toEqual(expected);
   });
-  test(`when get req to /users payload within body is structured 
-  { id: any number, username: any string }`,
+  test(`when get req to /users payload within body is structured { id: any number, username: any string }`,
   async () => {
     const response = await request(app).get(`/users`);
     const actual = response.body.payload;
@@ -118,8 +115,7 @@ search on valid and invalid requests`,
       expect(response.statusCode).toBe(200);  
     })  
   });  
-  test(`when get req to /users/:id <1..200> payload within body 
-  is structured { id: any number, username: any string }`,
+  test(`when get req to /users/:id <1..200> payload within body is structured { id: any number, username: any string }`,
   async () => {
     Array.from(Array(200).keys()).forEach(async e => {
       const response = await request(app).get(`/users/${e+1}`);
@@ -133,26 +129,21 @@ search on valid and invalid requests`,
     const response = await request(app).get(`/users/201`);
     expect(response.statusCode).toBe(404);
   });
-  test(`when get req to /users/201 a res with body structured 
-  { success: false, 
-    reason: "No user with that ID 201 was found!" } is returned`,
+  test(`when get req to /users/201 a res with body structured { success: false, reason: "No user with that ID 201 was found!" } is returned`,
   async () => {  
     const response = await request(app).get(`/users/201`);
     const actual = response.body;
     const expected = { success: false, reason: "No user with that ID 201 was found!" };
     expect(actual).toEqual(expected);
   });
-  test(`when get req to /users?username= <seedData[i].username> 
-  returns 200 status code`,
+  test(`when get req to /users?username= <seedData[i].username> returns 200 status code`,
   async () => {
     seedData.forEach(async e => {
       const response = await request(app).get(`/users?username=${e.username}`);
       expect(response.statusCode).toBe(200);
     });
   });  
-  test(`when get req to /users?username= <seedData[i].username> 
-  payload within body is structured 
-  [{ id: any number, username: any string }]`,
+  test(`when get req to /users?username= <seedData[i].username> payload within body is structured [{ id: any number, username: any string }]`,
     async () => {
       seedData.forEach(async e => {
         const response = await request(app).get(`/users?username=${e.username}`);
@@ -172,9 +163,7 @@ describe(`post route works on valid requests`,
     .set('Accept', 'application/json');
     expect(response.statusCode).toBe(201);
   }); 
-  test(`when valid post req to /users res.body.payload structured 
-  {"id": any number,
-  "username": any string}} and headers as json are returned`,
+  test(`when valid post req to /users res.body.payload structured {"id": any number,"username": any string}} and headers as json are returned`,
   async () => {
     const response = await request(app).post(`/users`)
     .send({username: 'JOSH!!'})
@@ -190,9 +179,6 @@ describe(`post route works on valid requests`,
 
 describe(`delete route works`,
 () => {
-  beforeAll(() => {
-    return resetUsersTable();
-  });
   test(`when delete to /users/:id <1..200> returns 200 status code`,
   async () => {
     Array.from(Array(200).keys()).forEach(async e => {
@@ -200,15 +186,14 @@ describe(`delete route works`,
       expect(response.statusCode).toBe(200);  
     })  
   });  
-  test(`when delete req to /users/:id <1..200> payload within body 
-  is structured { id: any number, username: any string }`,
+  test(`when delete req to /users/:id <1..200> payload within body is structured { id: any number, username: any string }`,
   async () => {
     Array.from(Array(200).keys()).forEach(async (e) => {
       const response = await request(app).delete(`/users/${e + 1}`);
       const actual = response.body.payload;
       console.log(response.body.payload)
       const expected = { id: expect.any(Number), username: expect.any(String) };
-      expect(actual).toEqual(expected);
+      return expect(actual).toEqual(expected);
     })
   });    
 });

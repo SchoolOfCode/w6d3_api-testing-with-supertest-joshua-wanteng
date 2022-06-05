@@ -76,9 +76,15 @@ import app from "../app.js";
 import { test, expect, describe} from "@jest/globals";
 import { seedData } from "../db/seed-data.js"
 import { resetUsersTable } from "../db/helpers.js"
+import { pool } from "../db/index.js";
 
 beforeAll(() => {
   return resetUsersTable();
+});
+
+afterAll(done => {
+  pool.end();
+  done();
 });
 
 describe(`get route works for all, id search, and specific name 
